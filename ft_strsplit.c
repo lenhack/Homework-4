@@ -1,5 +1,4 @@
 #include "mylib.h"
-#include <string.h>
 
 int newstrlen(const char*s, char c){
 	int i = 0;
@@ -12,20 +11,15 @@ int newstrlen(const char*s, char c){
 int number_of_words(const char*s, char c){
 	int words = 0;
 	int y = 0;
-	while(s[y] == c){
-		y++;
-		if(s[y] == '\0'){
+	while (*s)
+	{
+		if (y == 1 && *s == c)
+			y = 0;
+		if (y == 0 && *s != c){
+			y = 1;
 			words++;
 		}
-		while(s[y] != '\0'){
-			if(s[y] == c){
-				y++;
-				words++;
-			}
-			else{
-				y++;
-			}
-		}
+		s++;
 	}
 	return words;
 }
@@ -36,11 +30,12 @@ char** ft_strsplit(const char* s, char c){
 	int i = 0;
 	int y = 0;
 	int z;
+	int words = number_of_words(s, c);
 	if(s){
-		all_str = (char**)malloc(number_of_words(s, c)+1);
+		all_str = (char**)malloc(words);
 		if(all_str == 0){return NULL;}
 		temp = all_str;
-		while(s[i]){
+		while(s[i]&& y<words){
 			while(s[i] == c){
 				i++;
 			}
@@ -56,17 +51,7 @@ char** ft_strsplit(const char* s, char c){
 			y++;
 			if(s[i]){i++;}
 		}
-		return temp;
+		all_str[y] = NULL;
 	}
-	return NULL;	
+	return temp;
 }
-// int main()
-//  {
-//  	char* str = "hello fellow   students ";
-//     char **result = ft_strsplit(str, ' ');
- 	
-//  	printf("The result is %s\n", result[0]);
-//  	printf("The result is %s\n", result[1]);
-//      printf("The result is %s\n", result[2]);
-//  	return 0;
-//  }

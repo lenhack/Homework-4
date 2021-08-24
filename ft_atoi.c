@@ -1,4 +1,5 @@
 #include "mylib.h"
+#include <stdlib.h>
 
 int ft_atoi(const char *nptr){
     if(*nptr == '\0'){
@@ -8,6 +9,10 @@ int ft_atoi(const char *nptr){
     int rez = 0;
     int ind = 0;
     int sign = 1;
+
+    while (*nptr && (*nptr == ' ' || *nptr == '\n' || *nptr == '\t' ||
+			*nptr == '\v' || * nptr == '\f' || *nptr == '\r'))
+		++nptr;
 
     if(nptr[0] == '-'){
         sign = -1;
@@ -25,3 +30,8 @@ int ft_atoi(const char *nptr){
     }
     return sign * rez;
 }
+
+// int main(){
+//     printf("%d\n", ft_atoi("   123qw\tertyui"));
+//     printf("%d\n", atoi("   123qw\tertyui"));
+// }

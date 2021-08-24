@@ -1,6 +1,4 @@
 #include "mylib.h"
-#include <stdio.h>
-#include <string.h>
 
 void *ft_memset(void *s, int c, size_t n){
     
@@ -8,7 +6,7 @@ void *ft_memset(void *s, int c, size_t n){
     if(s == NULL){
         return NULL;
     }
-    while(*s_temp && n > 0){
+    while(n > 0){
         *s_temp = c;
         s_temp ++;
         n --;

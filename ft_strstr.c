@@ -1,26 +1,24 @@
 #include "mylib.h"
 
+
 char* ft_strstr(const char* haystack, const char* needle){
-    if(haystack == NULL || needle == NULL){
-        return NULL;
-    }
-    
-    int len = ft_strlen(needle);
+    const char	*ret;
+	const char	*temp = needle;;
 
-    while(*needle != '\0'){
-        if(*haystack == *needle){
-            haystack++;
-            needle++;
-        }else{
-            haystack++;
+	if (*needle == '\0'){
+		return ((char *)haystack);
+    }
+	while (*haystack){
+		ret = haystack;
+		while ((*haystack == *needle) && *needle){
+			++haystack;
+			++needle;
+		}
+		if (*needle == '\0'){
+			return ((char *)ret);
         }
-    }
-    return (char*)haystack - len;
+		needle = temp;
+		haystack = ret + 1;
+	}
+	return (NULL);
 }
-
-// int main(){
-//     char* hay = "abcdefghi";
-//     char* n = "def";
-//     printf("%s\n", ft_strstr(hay, n));
-//     printf("%s\n", strstr(hay, n));
-// }
