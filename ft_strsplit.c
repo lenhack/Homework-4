@@ -32,14 +32,14 @@ char** ft_strsplit(const char* s, char c){
 	int z;
 	int words = number_of_words(s, c);
 	if(s){
-		all_str = (char**)malloc(words);
+		all_str = (char**)malloc(sizeof(char*) * words+1);
 		if(all_str == 0){return NULL;}
 		temp = all_str;
 		while(s[i]&& y<words){
 			while(s[i] == c){
 				i++;
 			}
-			all_str[y] = (char*)malloc(newstrlen(s, c)+1);
+			all_str[y] = (char*)malloc(sizeof(char*) * newstrlen(&s[i], c)+1);
 			if(all_str[y] == NULL){return NULL;}
 			z = 0;
 			while(s[i] && s[i] !=c){

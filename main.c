@@ -843,10 +843,10 @@ void test_ft_strtrim()
 }
 void freeSplitted(char **splitted)
 {
-    // for (int i = 0; splitted[i]; i++)
-    // {
-    //     free(splitted[i]);
-    // }
+    for (int i = 0; i<3; i++)
+    {
+        free(splitted[i]);
+    }
     free(splitted);
 }
 void test_ft_strsplit()
@@ -856,7 +856,7 @@ void test_ft_strsplit()
     char **splited = ft_strsplit(a, '*');
     const char *expected[] = {"first", "second", "third"};
 
-    for (int i = 0; splited[i]; i++)
+    for (int i = 0; i<3; i++)
     {
         if (strcmp(splited[i], expected[i]))
         {
